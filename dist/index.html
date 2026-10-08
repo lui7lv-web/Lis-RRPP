@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Demostración académica para organizar oportunidades y seguimientos comerciales de LIS RRPP.">
+  <title>LIS RRPP — Seguimiento comercial</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23142B45'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='sans-serif' font-size='38' fill='%23F7F4EF'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css"><script defer src="app.js"></script>
+</head>
+<body>
+  <header class="brandbar"><div class="brand"><span class="monogram" aria-hidden="true">L</span><div><strong>LIS <span>RRPP</span></strong><p>Relaciones que fortalecen reputaciones</p></div></div><span class="demo">Demostración académica</span></header>
+  <main>
+    <div class="heading"><div><p class="eyebrow">TU AGENDA COMERCIAL</p><h1>Relaciones en movimiento.</h1><p class="subtitle">Cada oportunidad, con un próximo paso claro.</p></div><button id="new" class="primary"><span aria-hidden="true">＋</span> Nueva oportunidad</button></div>
+    <div id="storage-error" role="alert" class="error-banner" hidden></div>
+    <div id="notice" role="status" aria-live="polite"></div>
+    <section class="metrics" aria-label="Resumen de todas las oportunidades guardadas">
+      <div><span>Oportunidades abiertas</span><strong id="open-count">0</strong><small>Conversaciones en curso</small></div>
+      <div class="urgent"><span>Seguimientos vencidos</span><strong id="late-count">0</strong><small>Requieren tu atención</small></div>
+      <div><span>Oportunidades ganadas</span><strong id="won-count">0</strong><small>Relaciones que avanzaron</small></div>
+    </section>
+    <section aria-labelledby="list-title" class="opportunities">
+      <div class="section-heading"><h2 id="list-title">Tus oportunidades</h2><p id="today-label"></p></div>
+      <div class="toolbar"><div class="search"><label for="search">Buscar organización o contacto</label><input type="search" id="search" placeholder="Escribe un nombre…"></div><div><label for="filter">Estado</label><select id="filter"><option value="">Todos los estados</option><option>Contacto inicial</option><option>Reunión</option><option>Propuesta</option><option>Ganado</option><option>Perdido</option></select></div></div>
+      <div class="list-info"><span id="results"></span><span>Vencidos primero · Después, por fecha</span></div>
+      <div id="list"></div>
+    </section>
+    <footer><p>Los datos se guardan únicamente en este navegador; no se sincronizan entre dispositivos y pueden perderse al borrar los datos del navegador</p><p>Prototipo académico. Utiliza datos ficticios; no está preparado para almacenar información confidencial.</p></footer>
+  </main>
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form id="form" novalidate>
+      <div class="dialog-heading"><div><p class="eyebrow">LIS RRPP · OPORTUNIDAD</p><h2 id="editor-title">Nueva oportunidad</h2></div><button type="button" class="icon-button" id="close" aria-label="Cerrar formulario">×</button></div>
+      <p class="form-intro">Los campos con * son obligatorios.</p><p id="example-note" class="example-note" hidden>Registro ficticio de ejemplo</p>
+      <div class="form-grid">
+        <label>Organización *<input name="organization" required maxlength="160" autocomplete="organization"></label>
+        <label>Nombre del contacto *<input name="contact" required maxlength="160" autocomplete="name"></label>
+        <label>Cargo<input name="role" maxlength="160" autocomplete="organization-title"></label>
+        <label>Correo electrónico<input name="email" type="email" maxlength="254" autocomplete="email"></label>
+        <label>Teléfono<input name="phone" type="tel" maxlength="60" autocomplete="tel"></label>
+        <label>Servicio de interés *<select name="service" required><option value="">Selecciona un servicio</option><option>Comunicación estratégica</option><option>Relaciones con medios</option><option>Reputación corporativa</option><option>Relaciones institucionales</option><option>Gestión de crisis</option></select></label>
+        <label>Estado *<select name="status" required><option>Contacto inicial</option><option>Reunión</option><option>Propuesta</option><option>Ganado</option><option>Perdido</option></select></label>
+        <label><span id="date-label">Fecha de seguimiento *</span><input name="followUp" type="date"></label>
+        <label class="full"><span id="action-label">Próxima acción *</span><input name="nextAction" maxlength="500" placeholder="Por ejemplo: acordar una reunión de presentación"></label>
+        <p class="field-hint full" id="follow-hint">Puedes elegir una fecha pasada para registrar un seguimiento pendiente.</p>
+        <label class="full">Observaciones<textarea name="notes" rows="3" maxlength="4000"></textarea></label>
+      </div>
+      <p id="timestamps" class="field-hint"></p><p id="form-error" role="alert" class="form-error" hidden></p>
+      <div class="dialog-actions"><button type="button" id="cancel" class="secondary">Cancelar</button><button type="submit" class="primary">Guardar oportunidad</button></div>
+    </form>
+  </dialog>
+  <dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">¿Eliminar oportunidad?</h2><p id="delete-description"></p><p>Esta acción no se puede deshacer.</p><p id="delete-error" class="form-error" role="alert" hidden></p><div class="dialog-actions"><button id="cancel-delete" class="secondary">Cancelar</button><button id="confirm-delete" class="primary">Eliminar oportunidad</button></div></dialog>
+</body>
+</html>
