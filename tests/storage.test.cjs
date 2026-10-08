@@ -1,7 +1,7 @@
 // Pruebas de integración de la lógica real con DOM y almacenamiento simulados.
 // No reemplazan la revisión visual en un navegador.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
-const source=fs.readFileSync(path.join(__dirname,'../dist/app.js'),'utf8');
+const source=fs.readFileSync(path.join(__dirname,'../dist/app.js'),'utf8').replace(/\r\n/g,'\n');
 class Element {
  constructor(){this.value='';this.textContent='';this.hidden=false;this.children=[];this.style={};this.dataset={};this.handlers={};this.validity={typeMismatch:false};}
  addEventListener(n,f){this.handlers[n]=f;} append(...children){this.children.push(...children);} replaceChildren(){this.children=[];} setAttribute(){} focus(){} showModal(){this.open=true;} close(){this.open=false;}
